@@ -1,4 +1,3 @@
-const test = require('node:test');
 const sum = require('./sum');
 
 const sum = require('./sum');
