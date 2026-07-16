@@ -38,24 +38,24 @@ jobs:
       VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
       VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 
-      steps:
-        - name: Clonar repositorio
-          uses: actions/checkout@v4
+    steps:
+      - name: Clonar repositorio
+        uses: actions/checkout@v4
 
-        - name: Configurar Node.js
-          uses: actions/setup-node@v4
-        
-        - name: Instalar dependencias
-          run: npm install
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+      
+      - name: Instalar dependencias
+        run: npm install
 
-        - name: Instalar Vercel CLI
-          run: npm install -g vercel@latest
+      - name: Instalar Vercel CLI
+        run: npm install -g vercel@latest
 
-        - name: Obtener configuración de Vercel
-          run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+      - name: Obtener configuración de Vercel
+        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
 
-        - name: Construir el proyecto
-          run: vercel --build --prod --token=${{ secrets.VERCEL_TOKEN }}
+      - name: Construir el proyecto
+        run: vercel --build --prod --token=${{ secrets.VERCEL_TOKEN }}
 
-        -name: Desplegar en produccion
-          run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
+      -name: Desplegar en produccion
+        run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
