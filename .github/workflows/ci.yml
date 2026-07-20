@@ -5,9 +5,11 @@ on:
     branches: [main]
   pull_request:
     branches: [main]
+  workflow_dispatch:
 
 jobs:
   build-and-test: 
+    name: Validar lint y pruebas
     runs-on: ubuntu-latest
     steps: 
       - name: Clonar repositorio
@@ -17,14 +19,15 @@ jobs:
         uses: actions/setup-node@v4
         with: 
           node-version: '20'
+          cache: 'npm'
       
       - name: Instalar las dependencias
-        run: npm install
+        run: npm ci
 
-      - name: Lint del código
+      - name: Ejecutar lint del código
         run: npm run lint
       
-      - name: Ejecutar pruebas
+      - name: Ejecutar pruebas unitarias
         run: npm test 
 
   despliegue-produccion:
@@ -46,9 +49,10 @@ jobs:
         uses: actions/setup-node@v4
         with: 
           node-version: '20'
+          cache: 'npm'
 
       - name: Instalar las dependencias
-        run: npm install
+        run: npm ci
 
       - name: Instalar Vercel CLI
         run: npm install --global vercel@latest
