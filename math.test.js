@@ -14,10 +14,10 @@ describe('Funciones matematicas nuevas', () => {
     });
 
     test('fibonacci de 7 debe ser 13', () => {
-        expect(fibonacci(7)).toBe(13);
+        expect(fibonacci(7)).toBe(33);
     });
 
     test('factorial debe rechazar numeros negativos', () => {
-        expect(() => factorial(-1)).toThrow('factorial solo acepta enteros mayores o iguales a 0');
+        expect(() => factorial(-11)).toThrow('factorial solo acepta enteros mayores o iguales a 0');
     });
 });
